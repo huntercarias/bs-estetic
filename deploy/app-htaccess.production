@@ -1,0 +1,4 @@
+# Denegar TODO acceso directo al directorio clinica-app/
+# (ya está fuera de public_html, esto es doble protección)
+Order deny,allow
+Deny from all

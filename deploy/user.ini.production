@@ -1,0 +1,39 @@
+; =============================================================================
+;  PHP .user.ini — Hardening para producción
+;  Se sube a public_html/.user.ini
+; =============================================================================
+
+; ── Ocultar información del servidor ─────────────────────────────────────────
+expose_php = Off
+
+; ── Errores — nunca mostrar en pantalla ──────────────────────────────────────
+display_errors = Off
+display_startup_errors = Off
+log_errors = On
+error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT
+error_log = ../clinica-app/storage/logs/php-errors.log
+
+; ── Sesiones seguras ─────────────────────────────────────────────────────────
+session.cookie_secure = 1
+session.cookie_httponly = 1
+session.cookie_samesite = Strict
+session.use_strict_mode = 1
+session.sid_length = 48
+session.sid_bits_per_character = 6
+session.gc_maxlifetime = 7200
+session.use_only_cookies = 1
+session.entropy_length = 32
+
+; ── Límites de subida ─────────────────────────────────────────────────────────
+upload_max_filesize = 10M
+post_max_size = 12M
+max_execution_time = 60
+max_input_time = 60
+memory_limit = 128M
+
+; ── Deshabilitar funciones peligrosas ────────────────────────────────────────
+disable_functions = exec,passthru,shell_exec,system,proc_open,popen,curl_exec,curl_multi_exec,parse_ini_file,show_source,phpinfo
+
+; ── Seguridad de archivos ─────────────────────────────────────────────────────
+allow_url_include = Off
+allow_url_fopen = On
